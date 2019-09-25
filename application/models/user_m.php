@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class user_m extends CI_Model {
-    private $table_name = 'user2';
+    private $table_name = 'user';
     public function getAllUsersFromM(){
 
         $query = $this->db->get($this->table_name);
@@ -17,7 +17,13 @@ class user_m extends CI_Model {
     }
     public function addUserM(){
         $data = array(
-            'name' =>$this->input->post('userName')
+            'userName' =>$this->input->post('userName'),
+//            'employee_intEmpID'=>$this->input->post('1')
+            'passWord' =>sha1($this->input->post('pwd')),
+            'varEmail' =>$this->input->post('email'),
+            'employee_intEmpID'=>(1),
+            'dateCreatedDate'=>date('Y-m-d'),
+            'intCreatedBy'=>(10)
         );
         $this->db->insert($this->table_name,$data);
         if ($this->db->affected_rows()>0){

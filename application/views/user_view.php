@@ -55,7 +55,13 @@
                                         <div>
                                             <label>User Name</label>
                                             <div class="col-lg-12">
-                                                <input type="text" name="uName" class="form-control" id="uName">
+<!--                                                <input type="text" name="uName" class="form-control" id="uName">-->
+
+                                                <select class="form-control" id="uName">
+                                                    <option value="1">Dhahnushka Kumanayake</option>
+                                                    <option value="2">Anusha Madhushani</option>
+                                                    <option value="3">Jantha Perera</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div>
@@ -103,12 +109,15 @@
 
 
                             $("#userForm").attr('action', '<?php echo base_url();?>index.php/user_c/updateUser');
-
+                            alert(id);
                             $.ajax({
                                 type: 'ajax',
                                 method: 'post',
                                 url: '<?php echo base_url();?>index.php/user_c/selectUserToUpdate',
-                                data: {'id': id},
+                                data: {
+                                    'id': id,
+                                    ''
+                                },
                                 async: false,
                                 dataType: 'json',
                                 success: function (data) {
@@ -122,9 +131,8 @@
                         });
                         $('#btnSave').click(function () {
                             var url = $('#userForm').attr('action');
-                            alert(url);
-
-                            var uName = $('#uName').val();
+                            // var uName = $('#uName').val();
+                            var uName=$('#uName option:selected').attr("value")
                             var email = $('#email').val();
                             var pwd = $('#pwd').val();
                             var pwdAgain = $('#pwdAgain').val();
@@ -150,7 +158,12 @@
                                     method: 'post',
                                     url: url,
                                     // data: data,
-                                    data: {'userName': uName, 'id': '21'},
+                                    data: {
+                                        'userName': uName,
+                                        'id': '21',
+                                        'pwd': pwd,
+                                        'email':email
+                                    },
                                     async: false,
                                     dataType: 'json',
                                     success: function (response) {
@@ -177,9 +190,9 @@
                                     var i;
                                     for (i = 0; i < data.length; i++) {
                                         html += '<tr>' +
-                                            '<td>' + data[i].id + '</td>' +
-                                            '<td>' + data[i].name + '</td>' +
-                                            '<td><a href="javascript:;" class="btn btn-info btn-sm item-edit" data="' + data[i].id + '" >Update</a></td>' +
+                                            '<td>' + data[i].userName + '</td>' +
+                                            '<td>' + data[i].varEmail + '</td>' +
+                                            '<td><a href="javascript:;" class="btn btn-info btn-sm item-edit" data="' + data[i].intUid + '" >Update</a></td>' +
                                             '<td><a href="javascript:;" class="btn btn-danger btn-sm">Delete</a></td>' +
                                             '</tr>';
                                     }
