@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class user_c extends CI_Controller
+class User_c extends CI_Controller
 {
     function __construct()
     {
@@ -19,13 +19,17 @@ class user_c extends CI_Controller
         $result =  $this->m->getAllUsersFromM();
         echo json_encode($result);
     }
+    public function loadUserNameToModel(){
+        $result = $this->m->loadUserNameToModelFromM();
+        echo json_encode($result);
+    }
     public function addUser(){
         $result = $this->m->addUserM();
-        $msq['success'] = false;
-        if ($result){
-            $msq['success'] = true;
-        }
-        echo json_encode($msq);
+//        $msq['success'] = false;
+//        if ($result){
+//            $msq['success'] = true;
+//        }
+        echo json_encode($result);
     }
     public function selectUserToUpdate(){
         $result = $this->m->selectUserToUpdateM();
@@ -41,5 +45,5 @@ class user_c extends CI_Controller
     }
 }
 
-/* End of file user_c.php */
-/* Location: ./application/controllers/user_c.php */
+/* End of file User_c.php */
+/* Location: ./application/controllers/User_c.php */

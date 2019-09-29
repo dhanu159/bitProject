@@ -1,6 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+if(!$this->session->userdata['user']){
+    $add = base_url('index.php/Login_c/index');
+    header('Location:'.$add);
+
+}
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,8 +19,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/layout.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/main.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/layout.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/main.css">
 
     <!-- link Sweet Alerts -->
 <!--    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>-->
@@ -88,6 +94,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-item btn btn-info btn-flat"><a href="<?php echo base_url('index.php/Login_c/logOut'); ?>"> Log Out </a></li>
+
                 </ul>
             </nav>
             <!-- End sidebar-menu -->
