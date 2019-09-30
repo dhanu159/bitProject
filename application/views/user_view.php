@@ -222,8 +222,8 @@
                                         html += '<tr>' +
                                             '<td>' + empName + '</td>' +
                                             '<td>' + data[i].varEmail + '</td>' +
-                                            '<td><a href="javascript:;" class="btn btn-info btn-sm item-edit btn-flat" data="' + data[i].intUid + '" >Update</a></td>' +
-                                            '<td><a href="javascript:;" class="btn btn-danger btn-sm btn-flat">Delete</a></td>' +
+                                            '<td><a href="javascript:;" data-toggle="tooltip" title="Update User" class="btn btn-info btn-sm item-edit btn-flat" data="' + data[i].intUid + '" >Update</a></td>' +
+                                            '<td><a href="javascript:;" data-toggle="tooltip" title="Delete User" class="btn btn-danger btn-sm btn-flat"><i class="fas fa-trash-alt"></i></a></td>' +
                                             '</tr>';
                                     }
                                     $('#showData').html(html);
@@ -234,6 +234,10 @@
 
                             });
                         }
+                    });
+                    // Tool tip style
+                    $(document).ready(function(){
+                        $('[data-toggle="tooltip"]').tooltip();
                     });
                 </script>
             </div><!-- End card-body -->
