@@ -51,7 +51,7 @@ if(!$this->session->userdata['user']){
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="../../index3.html" class="brand-link">
+        <a href="<?php echo base_url('Home_c/index')?>" class="brand-link">
             <img src="<?php echo base_url(); ?>assets/images/logo.png"
                  alt="Logo"
                  class="brand-image img-circle elevation-3"
@@ -97,8 +97,14 @@ if(!$this->session->userdata['user']){
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item btn btn-info btn-flat"><a href="<?php echo base_url('index.php/Login_c/logOut'); ?>"> Log Out </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="<?php echo base_url('Admin_c/index'); ?>"> <i class="nav-icon fas fa-user"></i><p>Admin</p></a></li>
+                    <li class="nav-item"> <a class="nav-link" href="<?php echo base_url('User_c/index'); ?>"> <i class="nav-icon fas fa-user"></i><p>Manage Users</p></a></li>
 
+                    <div style="display: block;margin: 25px auto 0 auto;">
+
+                    <li class="nav-item"><a href="<?php echo base_url('Login_c/logOut'); ?>" class="nav-item btn btn-primary btn-flat btn-sm"><span class="fas fa-sign-out-alt"></span>Log Out</a></li>
+
+                    </div>
                 </ul>
             </nav>
             <!-- End sidebar-menu -->
