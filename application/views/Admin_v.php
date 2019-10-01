@@ -50,7 +50,6 @@
             var error = '';
             var lineBr = "\r\n";
             if (jobCategoryName ==""){
-                // alert('Please Insert Job Category Name');
                 error += "Please Insert Job Category Name!";
             }
             if (designation==""){
@@ -59,19 +58,31 @@
             if(error!=''){
                 swal("Error!", error, "warning");
             }
-            $.ajax({
-                type:'ajax',
-                method:'post',
-                async:false,
-                url :baseUrl+"index.php/Admin_c/saveJobTypes",
-                dataType:'json',
-                data:{
-                    'jobCategoryName':jobCategoryName,
-                    'designation':designation
-                }
+            else {
+                $.ajax({
+                    type: 'ajax',
+                    method: 'post',
+                    async: false,
+                    url: baseUrl + "index.php/Admin_c/saveJobTypes",
+                    dataType: 'json',
+                    data: {
+                        'jobCategoryName': jobCategoryName,
+                        'designation': designation
+                    },
+                    success:function(response){
+                        if (response.status==true){
+                            swal('Success',response.msg,'success');
+                        }
+                        else{
+                            swal('Failed',response.msg,'warning');
+                        }
 
-            });
-            // alert(designation);
+                    },
+                    error: function () {
+                        alert('Failed to save data');
+                    }
+                });
+            }
         });
     </script>
 </div><!-- End content-wrapper -->

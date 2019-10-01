@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7509b9f5-67e9-46f1-b128-02433ac6c82d" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/application/models/Admin_m.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/sweetAlerts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/Admin_c.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Admin_c.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/Login_c.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Login_c.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/models/Admin_m.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/models/Admin_m.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/Admin_v.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/Admin_v.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/Login_v.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/Login_v.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/partials/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/partials/footer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/partials/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/partials/header.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -33,8 +26,8 @@
       <file leaf-file-name="user_m.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/models/user_m.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-136">
-              <caret line="22" column="13" lean-forward="true" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+            <state relative-caret-position="-34">
+              <caret line="18" selection-start-line="18" selection-end-line="19" />
             </state>
           </provider>
         </entry>
@@ -42,22 +35,22 @@
       <file leaf-file-name="Admin_c.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/controllers/Admin_c.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="34" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
+            <state relative-caret-position="340">
+              <caret line="20" column="5" lean-forward="true" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Admin_m.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Admin_m.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/models/Admin_m.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="25" lean-forward="true" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
+            <state relative-caret-position="176">
+              <caret line="28" selection-start-line="28" selection-end-line="28" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="header.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="header.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/views/partials/header.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="17">
@@ -69,8 +62,8 @@
       <file leaf-file-name="Admin_v.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/Admin_v.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="477">
-              <caret line="69" column="32" selection-start-line="69" selection-start-column="21" selection-end-line="69" selection-end-column="32" />
+            <state relative-caret-position="341">
+              <caret line="82" column="21" selection-start-line="82" selection-start-column="21" selection-end-line="82" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -87,8 +80,8 @@
       <file leaf-file-name="user_view.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/user_view.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-11">
-              <caret line="135" column="34" selection-start-line="135" selection-start-column="34" selection-end-line="135" selection-end-column="34" />
+            <state relative-caret-position="397">
+              <caret line="174" column="69" lean-forward="true" selection-start-line="174" selection-start-column="69" selection-end-line="174" selection-end-column="69" />
             </state>
           </provider>
         </entry>
@@ -144,7 +137,6 @@
         <option value="$PROJECT_DIR$/application/controllers/user_con.php" />
         <option value="$PROJECT_DIR$/assets/jquery.min.js" />
         <option value="$PROJECT_DIR$/application/controllers/user_c.php" />
-        <option value="$PROJECT_DIR$/application/models/user_m.php" />
         <option value="E:/Make Life Easy/Dev/admin lte with bootstrap 4/AdminLTE-3.0.0-beta.1/pages/examples/login.html" />
         <option value="$PROJECT_DIR$/application/models/Login_m.php" />
         <option value="$PROJECT_DIR$/application/controllers/Home_c.php" />
@@ -157,9 +149,10 @@
         <option value="$PROJECT_DIR$/assets/js/sweetAlerts.js" />
         <option value="$PROJECT_DIR$/application/views/partials/footer.php" />
         <option value="$PROJECT_DIR$/application/views/partials/header.php" />
-        <option value="$PROJECT_DIR$/application/views/Admin_v.php" />
         <option value="$PROJECT_DIR$/application/controllers/User_c.php" />
         <option value="$PROJECT_DIR$/application/controllers/Admin_c.php" />
+        <option value="$PROJECT_DIR$/application/models/user_m.php" />
+        <option value="$PROJECT_DIR$/application/views/Admin_v.php" />
         <option value="$PROJECT_DIR$/application/models/Admin_m.php" />
       </list>
     </option>
@@ -308,7 +301,7 @@
       <workItem from="1569614461199" duration="1956000" />
       <workItem from="1569647055089" duration="41028000" />
       <workItem from="1569855626508" duration="3368000" />
-      <workItem from="1569935924831" duration="5433000" />
+      <workItem from="1569935924831" duration="10932000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1566105712538</created>
@@ -321,7 +314,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="125054000" />
+    <option name="totallyTimeSpent" value="130553000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1374" y="-8" width="1382" height="744" extended-state="6" />
@@ -625,13 +618,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/Login_v.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="67" column="8" lean-forward="true" selection-start-line="67" selection-start-column="8" selection-end-line="67" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/User_c.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -639,24 +625,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/Login_v.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="366">
+          <caret line="67" column="8" lean-forward="true" selection-start-line="67" selection-start-column="8" selection-end-line="67" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/Admin_c.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="34" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
+        <state relative-caret-position="340">
+          <caret line="20" column="5" lean-forward="true" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/models/user_m.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-136">
-          <caret line="22" column="13" lean-forward="true" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+        <state relative-caret-position="-34">
+          <caret line="18" selection-start-line="18" selection-end-line="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/user_view.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-11">
-          <caret line="135" column="34" selection-start-line="135" selection-start-column="34" selection-end-line="135" selection-end-column="34" />
+        <state relative-caret-position="397">
+          <caret line="174" column="69" lean-forward="true" selection-start-line="174" selection-start-column="69" selection-end-line="174" selection-end-column="69" />
         </state>
       </provider>
     </entry>
@@ -669,8 +662,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/Admin_v.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="477">
-          <caret line="69" column="32" selection-start-line="69" selection-start-column="21" selection-end-line="69" selection-end-column="32" />
+        <state relative-caret-position="341">
+          <caret line="82" column="21" selection-start-line="82" selection-start-column="21" selection-end-line="82" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/Admin_m.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
         </state>
       </provider>
     </entry>
@@ -678,13 +678,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" selection-start-line="1" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/Admin_m.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="25" lean-forward="true" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
         </state>
       </provider>
     </entry>
