@@ -30,19 +30,50 @@
                 <div class="row">
                     <div class="col-sm-12 col-md-6 col-lg-6">
                         <Label>Category Name</Label>
-                        <input type="text" class="form-control flat">
+                        <input type="text" class="form-control flat" id="jobCategoryName">
                     </div>
                     <div class="col-sm-12 col-md-6 col-lg-6">
                         <Label>Designation</Label>
-                        <input type="text" class="form-control flat">
+                        <input type="text" class="form-control flat" id="designation">
                     </div>
                     <div class="col-sm-12 col-md-6 col-lg-6" style="margin-top: 10px;">
-                        <button class="btn btn-flat btn-sm btn-primary">Save</button>
+                        <button class="btn btn-flat btn-sm btn-primary" id="saveJobCategories">Save</button>
                     </div>
                 </div>
             </div><!-- End card-body -->
         </div><!-- End card -->
     </section><!-- End content -->
+    <script>
+        $('#saveJobCategories').click(function () {
+            var jobCategoryName = $('#jobCategoryName').val();
+            var designation = $('#designation').val();
+            var error = '';
+            var lineBr = "\r\n";
+            if (jobCategoryName ==""){
+                // alert('Please Insert Job Category Name');
+                error += "Please Insert Job Category Name!";
+            }
+            if (designation==""){
+                error +=lineBr+"Please Insert Designation!";
+            }
+            if(error!=''){
+                swal("Error!", error, "warning");
+            }
+            $.ajax({
+                type:'ajax',
+                method:'post',
+                async:false,
+                url :baseUrl+"index.php/Admin_c/saveJobTypes",
+                dataType:'json',
+                data:{
+                    'jobCategoryName':jobCategoryName,
+                    'designation':designation
+                }
+
+            });
+            // alert(designation);
+        });
+    </script>
 </div><!-- End content-wrapper -->
 
 

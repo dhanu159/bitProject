@@ -34,6 +34,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <!--            <form action="--><?php //echo base_url();?><!--index.php/Logic_c/userLogin" method="post">-->
 
+            <?php if($this->session->flashdata('flashError')){?>
+                <p class='alert alert-danger ErrMsg flashMsg flashError'> <?=$this->session->flashdata('flashError')?> </p>
+            <?php }?>
+
+
             <?php echo validation_errors('<div class="alert alert-danger ErrMsg">','</div>');?>
             <?php echo form_open('Login_c/userLogin')?>
                 <div class="input-group mb-3">

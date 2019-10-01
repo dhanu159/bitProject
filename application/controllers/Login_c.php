@@ -32,6 +32,7 @@ class Login_c extends CI_Controller{
 
             }
             else{
+                $this->session->set_flashdata('flashError', 'Invalid User Name or Password.');
                 $this->load->view('Login_v');
 //                should pass msg to view user not exits
 

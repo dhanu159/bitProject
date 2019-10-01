@@ -26,6 +26,9 @@ if(!$this->session->userdata['user']){
 <!--    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>-->
 
     <script type="text/javascript"> var baseUrl = "<?php echo base_url(); ?>" </script>
+    <script type="text/javascript" src="<?php echo base_url();?>assets/js/sweetAlerts.js"></script>
+<!--    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>-->
+
 
     <!-- jQuery -->
     <script type="text/javascript" src="<?php echo base_url();?>assets/jquery/jquery.min.js"></script>
