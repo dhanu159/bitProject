@@ -17,17 +17,13 @@ class Admin_m extends CI_Model
             'msg' => '',
             'status' => false
         );
-
         $data = array(
             'varJobCategoryName' => $this->input->post('jobCategoryName'),
             'varDesignation' => $this->input->post('designation')
         );
-
         $varJobCategoryName = $data['varJobCategoryName'];
         $varDesignation = $data['varDesignation'];
-
         $query = $this->db->query("SELECT * FROM $this->jobCategory_Table WHERE varJobCategoryName ='$varJobCategoryName' AND varDesignation = '$varDesignation'");
-
         if ($query->num_rows() < 1) {
             $this->db->insert($this->jobCategory_Table, $data);
             if ($this->db->affected_rows() > 0) {
@@ -36,11 +32,20 @@ class Admin_m extends CI_Model
             } else {
                 $result['msg'] = 'Failed to save record sql error';
             }
-        }
-        else{
+        } else {
             $result['msg'] = 'Job Category and Designation Already Added';
         }
         return $result;
+    }
 
+    public function viewAllJobTypes(){
+
+        $query =  $this->db->get($this->jobCategory_Table);
+        if ($query->num_rows()>0){
+            return $query->result();
+        }
+        else{
+            return false;
+        }
     }
 }

@@ -97,12 +97,14 @@ if(!$this->session->userdata['user']){
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item"> <a class="nav-link" href="<?php echo base_url('Admin_c/index'); ?>"> <i class="nav-icon fas fa-user"></i><p>Admin</p></a></li>
                     <li class="nav-item"> <a class="nav-link" href="<?php echo base_url('User_c/index'); ?>"> <i class="nav-icon fas fa-user"></i><p>Manage Users</p></a></li>
+                    <li class="nav-item"> <a class="nav-link" href="<?php echo base_url('Admin_c/index'); ?>"> <i class="nav-icon fas fa-users-cog"></i><p>Admin</p></a></li>
+
+                    <li class="nav-item"> <a  style="background-color: #0c525d;margin-top: 25px!important;" class="nav-link" href="<?php echo base_url('Login_c/logOut'); ?>"> <i class="nav-icon fas fa-sign-out-alt"></i><p>Log Out</p></a></li>
 
                     <div style="display: block;margin: 25px auto 0 auto;">
 
-                    <li class="nav-item"><a href="<?php echo base_url('Login_c/logOut'); ?>" class="nav-item btn btn-primary btn-flat btn-sm"><span class="fas fa-sign-out-alt"></span>Log Out</a></li>
+<!--                    <li class="nav-item"><a href="--><?php //echo base_url('Login_c/logOut'); ?><!--" class="nav-item btn btn-primary btn-flat btn-sm"><span class="fas fa-sign-out-alt"></span>Log Out</a></li>-->
 
                     </div>
                 </ul>

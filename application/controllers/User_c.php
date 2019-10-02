@@ -12,7 +12,7 @@ class User_c extends CI_Controller
     public function index()
     {
         $this->load->view('partials/header');
-        $this->load->view('user_view');
+        $this->load->view('user_v');
         $this->load->view('partials/footer');
     }
     public function getAllUsers(){

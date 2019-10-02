@@ -19,5 +19,9 @@ class Admin_c extends CI_Controller {
         $result = $this->a->saveJobTypes();
         echo json_encode($result);
     }
+    public function viewAllJobTypes(){
+        $result = $this->a->viewAllJobTypes();
+        echo json_encode($result);
+    }
 }
 

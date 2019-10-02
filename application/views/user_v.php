@@ -54,7 +54,7 @@
                                         <div>
                                             <label>Employee Name</label>
                                             <div class="col-lg-12">
-                                                <select class="form-control" id="uName">
+                                                <select class="form-control flat" id="uName">
 <!--                                                        emp name load using ajax as options -->
                                                 </select>
                                             </div>
@@ -62,24 +62,24 @@
                                         <div>
                                             <label for="">EMP ID</label>
                                             <div class="col-lg-12">
-                                                <input type="text" name="empId" class="form-control" id="empId" readonly>
+                                                <input type="text" name="empId" class="form-control flat" id="empId" readonly>
                                             </div>
                                         </div>
                                         <div>
                                             <label for="">Email</label>
                                             <div class="col-lg-12">
-                                                <input type="text" name="email" class="form-control" id="email">
+                                                <input type="text" name="email" class="form-control flat" id="email">
                                             </div>
                                         </div>
                                         <div>
                                             <label for="">Password</label>
                                             <div class="col-lg-12">
-                                                <input type="password" name="pwd" class="form-control" id="pwd">
+                                                <input type="password" name="pwd" class="form-control flat" id="pwd">
                                             </div>
                                             <div>
                                                 <label for="">Password Again</label>
                                                 <div class="col-lg-12">
-                                                    <input type="password" name="pwdAgain" class="form-control"
+                                                    <input type="password" name="pwdAgain" class="form-control flat"
                                                            id="pwdAgain">
                                                 </div>
                                             </div>
