@@ -4,3 +4,17 @@
 .main-footer{
 	text-align: center;
 }
+.fulWTb{
+	width: 100%!important;
+}
+.headSep{
+	text-align: center!important;
+	width: 100%!important;
+	background-color: rgb(136,176,75)!important;
+	color: white!important;
+	font-weight: normal!important;
+}
+.navLabel{
+	color: rgb(194,199,208)!important;
+	font-weight: normal!important;
+}

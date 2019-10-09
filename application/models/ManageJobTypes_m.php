@@ -7,7 +7,7 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Admin_m extends CI_Model
+class ManageJobTypes_m extends CI_Model
 {
     private $jobCategory_Table = 'jobcateogory';
 

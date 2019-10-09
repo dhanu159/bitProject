@@ -7,8 +7,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Blank Page</li>
+                        <li class="breadcrumb-item"><a href="<?php echo base_url('Home_c')?>">Home</a></li>
+                        <li class="breadcrumb-item active">Manage Users</li>
                     </ol>
                 </div>
             </div>
@@ -24,13 +24,13 @@
                 </div>
             </div>
             <div class="card-body">
-                <button class="btn btn-success btn-sm btn-flat" data-toggle="modal" id="viewAddUserModel">Add</button>
-                <table class="table table-striped">
+                <button class="btn btn-success btn-sm btn-flat" data-toggle="modal" id="viewAddUserModel" style="margin-bottom: 20px;">Add</button>
+                <table class="table display responsive nowrap" id="userDataTable">
                     <thead>
                     <tr>
                         <th>EMP Name</th>
                         <th>Email (User Name)</th>
-                        <th colspan="2" style="text-align: center;">Action</th>
+                        <th>Delete</th>
                     </tr>
                     </thead>
                     <tbody id="showData">
@@ -99,7 +99,7 @@
 
                         $('#viewAddUserModel').click(function () {
                             // $('#addUser').modal('show');
-                            //$("#userForm").attr('action', '<?php //echo base_url();?>//index.php/User_c/addUser');
+                            //$("#userForm").attr('action', '<?php //echo base_url();?>//index.php/ManageUsers_c/addUser');
                         });
 
                         // save and update button is same.modela change its action according to add or update button click
@@ -108,12 +108,12 @@
                             var id = $(this).attr('data');
                             $('#addUser').modal('show');
                             $('#addUser').find('.modal-title').text('Edit User');
-                            $("#userForm").attr('action', '<?php echo base_url();?>index.php/User_c/updateUser');
+                            $("#userForm").attr('action', '<?php echo base_url();?>index.php/ManageUsers_c/updateUser');
                             alert(id);
                             $.ajax({
                                 type: 'ajax',
                                 method: 'post',
-                                url: '<?php echo base_url();?>index.php/User_c/selectUserToUpdate',
+                                url: '<?php echo base_url();?>index.php/ManageUsers_c/selectUserToUpdate',
                                 data: {
                                     'id': id
                                 },
@@ -184,10 +184,10 @@
                         });
 
                         $('#viewAddUserModel').click(function () {
-                            $("#userForm").attr('action', '<?php echo base_url();?>index.php/User_c/addUser');
+                            $("#userForm").attr('action', '<?php echo base_url();?>index.php/ManageUsers_c/addUser');
                             $.ajax({
                                 type:'ajax',
-                                url:'<?php echo base_url();?>index.php/User_c/loadUserNameToModel',
+                                url:'<?php echo base_url();?>index.php/ManageUsers_c/loadUserNameToModel',
                                 async:false,
                                 dataType:'json',
                                 success: function(data){
@@ -211,7 +211,7 @@
                         function showAllUsers() {
                             $.ajax({
                                 type: 'ajax',
-                                url: '<?php echo base_url();?>index.php/User_c/getAllUsers',
+                                url: '<?php echo base_url();?>index.php/ManageUsers_c/getAllUsers',
                                 async: false,
                                 dataType: 'json',
                                 success: function (data) {
@@ -222,11 +222,11 @@
                                         html += '<tr>' +
                                             '<td>' + empName + '</td>' +
                                             '<td>' + data[i].varEmail + '</td>' +
-                                            '<td><a href="javascript:;" data-toggle="tooltip" title="Update User" class="btn btn-info btn-sm item-edit btn-flat" data="' + data[i].intUid + '" >Update</a></td>' +
                                             '<td><a href="javascript:;" data-toggle="tooltip" title="Delete User" class="btn btn-danger btn-sm btn-flat"><i class="fas fa-trash-alt"></i></a></td>' +
                                             '</tr>';
                                     }
                                     $('#showData').html(html);
+                                    $('#userDataTable').DataTable();
                                 },
                                 error: function () {
                                     alert('Could not load data');

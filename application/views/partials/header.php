@@ -1,8 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-if(!$this->session->userdata['user']){
+if (!$this->session->userdata['uRole']) {
     $add = base_url('index.php/Login_c/index');
-    header('Location:'.$add);
+    header('Location:' . $add);
 
 }
 ?>
@@ -15,7 +15,8 @@ if(!$this->session->userdata['user']){
     <title>ShanMart Holdings</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
@@ -23,16 +24,24 @@ if(!$this->session->userdata['user']){
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/main.css">
 
     <!-- link Sweet Alerts -->
-<!--    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>-->
+    <!--    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>-->
 
     <script type="text/javascript"> var baseUrl = "<?php echo base_url(); ?>" </script>
-    <script type="text/javascript" src="<?php echo base_url();?>assets/js/sweetAlerts.js"></script>
-<!--    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>-->
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/sweetAlerts.js"></script>
+    <!--    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>-->
 
 
     <!-- jQuery -->
-    <script type="text/javascript" src="<?php echo base_url();?>assets/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/jquery/jquery.min.js"></script>
     <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/1.0.7/css/responsive.dataTables.min.css">
+
+
+    <script src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/1.0.7/js/dataTables.responsive.min.js"></script>
+
 
 </head>
 <body class="hold-transition sidebar-mini">
@@ -51,17 +60,18 @@ if(!$this->session->userdata['user']){
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="<?php echo base_url('Home_c/index')?>" class="brand-link">
-            <img src="<?php echo base_url(); ?>assets/images/logo.png"
+        <a href="<?php echo base_url('Home_c/index') ?>" class="brand-link">
+            <img src="<?php echo base_url(); ?>assets/images/LOGO.png"
                  alt="Logo"
                  class="brand-image img-circle elevation-3"
                  style="width: 50px;">
-            <span class="brand-text font-weight-light" style="font-size: 14px;">ShanMart Holding</span>
+            <span class="brand-text font-weight-light navLabel" style="font-size: 14px;">ShanMart Holding</span>
         </a>
 
         <!-- Sidebar -->
         <div class="sidebar">
             <!-- Sidebar user (optional) -->
+
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="image">
                     <!-- <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> -->
@@ -70,8 +80,14 @@ if(!$this->session->userdata['user']){
 
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block">Dhanushka</a>
+                    <div style="text-align: center;">
+                    <label class="navLabel">Welcome !</label> </br>
+                    </div>
+                        <label class="navLabel"><?php echo $this->session->userdata['uRole'] . " " . $this->session->userdata['uName'] ?></label>
                 </div>
+            </div>
+            <div style="text-align: left">
+                </hr>
             </div>
 
             <!-- Sidebar Menu -->
@@ -80,33 +96,34 @@ if(!$this->session->userdata['user']){
                     data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
-                    <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
-                            <p>
-                                Dashboard
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
+                    <li class="nav-item has-treeview"><a href="#" class="nav-link"><i
+                                    class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>Dashboard<i class="right fas fa-angle-left"></i></p></a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="../../index.html" class="nav-link">
+                                <a href="#" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Dashboard v1</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item"> <a class="nav-link" href="<?php echo base_url('User_c/index'); ?>"> <i class="nav-icon fas fa-user"></i><p>Manage Users</p></a></li>
-                    <li class="nav-item"> <a class="nav-link" href="<?php echo base_url('Admin_c/index'); ?>"> <i class="nav-icon fas fa-users-cog"></i><p>Admin</p></a></li>
+                    <?php if ($this->session->userdata['uRole']=='Admin'){?>
+                    <li class="nav-item has-treeview"><a href="#" class="nav-link"><i class="nav-icon fas fa-users-cog"></i></i><p>Admin<i class="right fas fa-angle-left"></i></p></a>
+                        <ul class="nav-treeview">
+                            <li class="nav-item"><a class="nav-link" href="<?php echo base_url('ManageUsers_c/index'); ?>"> <i class="nav-icon fas fa-user"></i><p>Manage Users</p></a></li>
 
-                    <li class="nav-item"> <a  style="background-color: #0c525d;margin-top: 25px!important;" class="nav-link" href="<?php echo base_url('Login_c/logOut'); ?>"> <i class="nav-icon fas fa-sign-out-alt"></i><p>Log Out</p></a></li>
-
-                    <div style="display: block;margin: 25px auto 0 auto;">
-
-<!--                    <li class="nav-item"><a href="--><?php //echo base_url('Login_c/logOut'); ?><!--" class="nav-item btn btn-primary btn-flat btn-sm"><span class="fas fa-sign-out-alt"></span>Log Out</a></li>-->
-
-                    </div>
+                            <li class="nav-item has-treeview"><a href="#" class="nav-link"><i class="nav-icon fas fa-briefcase"></i></i><p>Manage Job Types<i class="right fas fa-angle-left"></i></p></a>
+                                <ul class="nav-treeview">
+                                    <li class="nav-item has-treeview"><a href="<?php echo base_url('ManageJobTypes_c')?>" class="nav-link"><i class="nav-icon fas fa-plus-circle"></i></i><p>Add Job Types</p></a></li>
+                                </ul>
+                        </ul>
+                    </li>
+                    <?php }?>
+                    <li class="nav-item"><a style="background-color: #0c525d;margin-top: 25px!important;"
+                                            class="nav-link" href="<?php echo base_url('Login_c/logOut'); ?>"> <i
+                                    class="nav-icon fas fa-sign-out-alt"></i>
+                            <p>Log Out</p></a></li>
                 </ul>
             </nav>
             <!-- End sidebar-menu -->

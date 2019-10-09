@@ -3,12 +3,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Admin Menu</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="<?php echo base_url('Home_v')?>">Home</a></li>
                         <li class="breadcrumb-item active">Admin</li>
+                        <li class="breadcrumb-item active">Manage Job Types</li>
                     </ol>
                 </div>
             </div>
@@ -17,7 +17,7 @@
     <section class="content">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Add Job Types</h3>
+                <h3 class="card-title">Manage Job Types</h3>
 
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-widget="collapse" data-toggle="tooltip"
@@ -41,12 +41,13 @@
                     </div>
                 </div>
                 <div class="row" style="margin-top: 35px;">
-                    <div class="col-xs-12">
-                        <table class="table table-striped table-responsive-sm">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <table id="jobTypeTable" class="table display responsive nowrap">
                             <thead>
                             <th>Job Category Name</th>
                             <th>Designation</th>
-                            <th colspan="2" style="text-align: center">Action</th>
+                            <th>Update</th>
+                            <th>Delete</th>
                             </thead>
                             <tbody id="showData">
 
@@ -58,15 +59,21 @@
         </div><!-- End card -->
     </section><!-- End content -->
     <script>
+        // $(document).ready( function () {
+        // } );
+    </script>
+    <script>
         $(function () {
             showAllJobTypes();
-
+            function loadDataTabel(){
+                $('#jobTypeTable').DataTable();
+            }
             function showAllJobTypes() {
                 $.ajax({
                     type:'ajax',
                     method:'post',
                     async:false,
-                    url:baseUrl+"index.php/Admin_c/viewAllJobTypes",
+                    url:baseUrl+"index.php/ManageJobTypes_c/viewAllJobTypes",
                     dataType: 'json',
                     success: function(data){
                         var html = '';
@@ -75,17 +82,20 @@
                             html += '<tr>' +
                                 '<td>' + data[i].varJobCategoryName + '</td>' +
                                 '<td>' + data[i].varDesignation + '</td>' +
-                                '<td><a href="javascript:;" data-toggle="tooltip" title="Update User" class="btn btn-info btn-sm item-edit btn-flat" data="' + data[i].intJobCategoryID + '" >Update</a></td>' +
-                                '<td><a href="javascript:;" data-toggle="tooltip" title="Delete User" class="btn btn-danger btn-sm btn-flat"><i class="fas fa-trash-alt"></i></a></td>' +
+                                // '<td>' + data[i].intJobCategoryID + '</td>' +
+                                // '<td>' + data[i].intJobCategoryID + '</td>' +
+                              '<td><a href="javascript:;" data-toggle="tooltip" title="Update User" class="btn btn-info btn-sm item-edit btn-flat" data="' + data[i].intJobCategoryID + '" >Update</a></td>' +
+                               '<td><a href="javascript:;" data-toggle="tooltip" title="Delete User" class="btn btn-danger btn-sm btn-flat"><i class="fas fa-trash-alt"></i></a></td>' +
                                 '</tr>';
                         }
                         $('#showData').html(html);
+                        loadDataTabel();
                     },
                     error: function () {
                         swal({
                             title: "Success",
                             text: "Failed to load Data!",
-                            icon: "success",
+                            icon: "error",
                         });
                     }
                 });
@@ -110,7 +120,7 @@
                         type: 'ajax',
                         method: 'post',
                         async: false,
-                        url: baseUrl + "index.php/Admin_c/saveJobTypes",
+                        url: baseUrl + "index.php/ManageJobTypes_c/saveJobTypes",
                         dataType: 'json',
                         data: {
                             'jobCategoryName': jobCategoryName,

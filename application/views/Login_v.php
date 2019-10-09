@@ -39,6 +39,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <?php }?>
 
 
+
+
             <?php echo validation_errors('<div class="alert alert-danger ErrMsg">','</div>');?>
             <?php echo form_open('Login_c/userLogin')?>
                 <div class="input-group mb-3">

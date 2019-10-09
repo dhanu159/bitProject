@@ -1,18 +1,18 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class User_c extends CI_Controller
+class ManageUsers_c extends CI_Controller
 {
     function __construct()
     {
         parent:: __construct();
-        $this->load->model('user_m','m');
+        $this->load->model('ManageUsers_m','m');
     }
 
     public function index()
     {
         $this->load->view('partials/header');
-        $this->load->view('user_v');
+        $this->load->view('ManageUsers_v');
         $this->load->view('partials/footer');
     }
     public function getAllUsers(){
@@ -45,5 +45,5 @@ class User_c extends CI_Controller
     }
 }
 
-/* End of file User_c.php */
-/* Location: ./application/controllers/User_c.php */
+/* End of file ManageUsers_cUser_c.php */
+/* Location: ./application/controllers/ManageUsers_cUser_c.php */
