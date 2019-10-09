@@ -20,10 +20,10 @@ class Employee_c extends CI_Controller{
     public function saveEmployee_c(){
 //        $response ="";
 //        $msg = "";
-        $response = array(
-            'status'=>'',
-            'msg' =>''
-        );
+//        $response = array(
+//            'status'=>'',
+//            'msg' =>''
+//        );
         $this->load->library('form_validation');
         $this->form_validation->set_rules('fName','First Name','required|alpha');
         $this->form_validation->set_rules('mName','Middle Name','required|alpha');
@@ -46,15 +46,17 @@ class Employee_c extends CI_Controller{
         }
         else{
             $result = $this->E->saveEmployee_m();
+
+            $this->session->set_flashdata('flashError','');
+            $this->session->set_flashdata('flashSuccess','');
+
             if (!$result){
-                $response['msg'] =  'Employee already added!';
-                $response['status'] = 'Error';
+                $this->session->set_flashdata('flashError', 'Employee already added!');
+
             }
             else{
-                $response['msg'] = 'Employee added successfully !';
-                $response['status'] = 'success';
+                $this->session->set_flashdata('flashSuccess', 'Employee added successfully !');
             }
-            $this->session->set_flashdata('response',$response);
             $this->load->view('partials/header');
             $this->load->view('Employee_v');
             $this->load->view('partials/footer');

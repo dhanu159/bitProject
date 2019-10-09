@@ -36,24 +36,18 @@
                     <!--                        <i class="fas fa-times"></i></button>-->
                 </div>
             </div>
-            <div class="card-body">
+            <p class="card-body">
                 <!--                Content-->
-                <?php if ($this->session->flashdata('flashError')) { ?>
-                    <p class='alert alert-danger ErrMsg flashMsg flashError'> <?= $this->session->flashdata('flashError') ?> </p>
+                <?php if ($this->session->flashdata('flashError')){?>
+                    <p class='alert alert-danger ErrMsg'><?=$this->session->flashdata('flashError')?></p>
                 <?php } ?>
 
-<!--                --><?php //if ($this->session->flashdata('flashError')){
-//                    echo $this->session->flashdata('flashError'[staus]);
-//                }?>
-
-                <?php if($this->session->flashdata('msg')){?>
-                    <p class='alert alert-primary ErrMsg'> <?=$this->session->flashdata('msg')?> </p>
-                <?php }?>
-
-
+                <?php if ($this->session->flashdata('flashSuccess')){?>
+                    <p class='alert alert-success ErrMsg'><?=$this->session->flashdata('flashSuccess')?></p>
+                <?php } ?>
                 <?php echo validation_errors('<div class="alert alert-danger">', '</div>') ?>
                 <?php echo form_open('Employee_c/saveEmployee_c'); ?>
-                <div class="row form-group">
+                <div class="row form-group" style="padding: 10px;">
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                         <label for="">First Name :</label>
                         <input class="form-control flat" type="text" name="fName">
@@ -125,5 +119,10 @@
             </div><!-- End card-body -->
         </div><!-- End card -->
     </section><!-- End content -->
+<script>
+    $(document).ready(function(){
+        $(".ErrMsg").fadeOut(5000,'swing');
+    });
+</script>
 </div><!-- End content-wrapper -->
 
