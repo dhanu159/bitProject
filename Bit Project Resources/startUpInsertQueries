@@ -1,0 +1,30 @@
+First Record
+
+INSERT INTO `jobcateogory` (`intJobCategoryID`, `varJobCategoryName`, `varDesignation`) VALUES ('1', 'IT', 'Software Engineer');
+
+INSERT INTO `employee` (`intEmpID`, `varEmpFname`, `varEmpMName`, `varEmpLname`, `varEmpNIC`, `varDrivingLisenceNo`, `varEmpAddL1`, `varEmpAddL2`, `varEmpAddL3`, `varEmpContactNoM`, `varEmpContactNoH`, `gender`, `image`, `dateJoinedDate`, `empIsActive`, `varDescription`, `jobCateogory_intJobCategoryID`) VALUES ('1', 'Dhanushka', 'Randima', 'Kumanayake', '903073735V', NULL, 'Dhammasaragama', 'Galkulama', 'Anuradhapura', '0714292635', '0253893793', 'Male', '', '2019-09-11', '1', NULL, '1');
+
+INSERT INTO `permission` (`IntPermissionId`, `permission`) VALUES ('1', 'Manage_Users');
+
+INSERT INTO `role` (`intRoleID`, `varRole`) VALUES ('1', 'Admin');
+
+INSERT INTO `role_has_permission` (`role_intRoleID`, `permission_IntPermissionId`) VALUES ('1', '1');
+
+INSERT INTO `user` (`intUid`, `passWord`, `varEmail`, `employee_intEmpID`, `dateCreatedDate`, `intCreatedBy`, `isActive`, `DateUpdatedDate`, `intUpdatedBy`) VALUES ('1', '4cc19aaff82f60ac4097f935ab4a06ad4f0891cc', 'rdhanushka5@gmail.com', '1', '2019-10-06', '1', '1', NULL, NULL);
+
+INSERT INTO `user_has_role1` (`user_intUid`, `role_intRoleID`) VALUES ('1', '1');
+
+Second Record
+INSERT INTO `jobcateogory` (`intJobCategoryID`, `varJobCategoryName`, `varDesignation`) VALUES ('2', 'Finance', 'Cashier');
+
+INSERT INTO `employee` (`intEmpID`, `varEmpFname`, `varEmpMName`, `varEmpLname`, `varEmpNIC`, `varDrivingLisenceNo`, `varEmpAddL1`, `varEmpAddL2`, `varEmpAddL3`, `varEmpContactNoM`, `varEmpContactNoH`, `gender`, `image`, `dateJoinedDate`, `empIsActive`, `varDescription`, `jobCateogory_intJobCategoryID`) VALUES ('2', 'Anusha', 'Madhushani', 'Perera', '903073736V', NULL, 'Katubedda', 'Moratuwa', 'Moratuwa', '0714292635', '0253893793', 'Female', '', '2019-09-11', '1', NULL, '1');
+
+INSERT INTO `permission` (`IntPermissionId`, `permission`) VALUES ('2', 'view_Users');
+
+INSERT INTO `role` (`intRoleID`, `varRole`) VALUES ('2', 'User');
+
+INSERT INTO `role_has_permission` (`role_intRoleID`, `permission_IntPermissionId`) VALUES ('2', '2');
+
+INSERT INTO `user` (`intUid`, `passWord`, `varEmail`, `employee_intEmpID`, `dateCreatedDate`, `intCreatedBy`, `isActive`, `DateUpdatedDate`, `intUpdatedBy`) VALUES ('2', '4cc19aaff82f60ac4097f935ab4a06ad4f0891cc', 'anu@gmail.com', '2', '2019-10-06', '1', '1', NULL, NULL);
+
+INSERT INTO `user_has_role1` (`user_intUid`, `role_intRoleID`) VALUES ('2', '2');

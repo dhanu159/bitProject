@@ -1,3 +1,8 @@
+<?php
+if (!$this->session->userdata['uName'] || $this->session->userdata['uRole']!='Admin') {
+    header('Location:'.base_url('index.php/Login_c/index'));
+}
+?>
 <div class="content-wrapper">
     <section class="content-header">
         <div class="container-fluid">

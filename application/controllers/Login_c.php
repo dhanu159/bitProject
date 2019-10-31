@@ -29,14 +29,15 @@ class Login_c extends CI_Controller
                 $uData = array(
                     'uEmail' => $userInfo->varEmail,
                     'uRole' => $userInfo->varRole,
-                    'uName' => $userInfo->varEmpFname
+                    'uName' => $userInfo->varEmpFname,
+                    'uImage' => $userInfo->image
 //                    'uPermission'=>$userInfo->permission
                 );
 
                 $this->load->library('session');
                 $this->session->set_userdata($uData);
 
-                print_r($this->session->set_userdata($uData));
+//                print_r($this->session->set_userdata($uData));
                 if (isset($this->session->userdata['uRole'])){
                     $this->load->view('partials/header');
                     $this->load->view('Home_v');
@@ -58,8 +59,8 @@ class Login_c extends CI_Controller
 
     public function logOut()
     {
-        $this->session->unset_userdata('user');
-        $add = base_url('index.php/Login_c/index');
-        header('Location:' . $add);
+        session_destroy();
+        header('Location:' .base_url('index.php/Login_c/index'));
+
     }
 }
