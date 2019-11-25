@@ -28,20 +28,24 @@ if (!$this->session->userdata['uRole']) {
 
 
     <!-- link Sweet Alerts sweetalert2.github.io-->
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/sweetAlerts.js"></script>
+<!--    <script type="text/javascript" src="--><?php //echo base_url(); ?><!--assets/js/sweetAlerts.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script> -->
 
 
     <!-- jQuery -->
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/jquery/jquery.min.js"></script>
-    <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
+<!--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/1.0.7/css/responsive.dataTables.min.css">
 
 
-    <script src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/1.0.7/js/dataTables.responsive.min.js"></script>
+<!--    <script src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>-->
+<!--    <script src="https://cdn.datatables.net/responsive/1.0.7/js/dataTables.responsive.min.js"></script>-->
+    <script src="<?php echo base_url()?>assets/js/jquery.dataTables.min.js"></script>
+    <script src="<?php echo base_url()?>assets/js/dataTables.responsive.min.js"></script>
 
 
 </head>
@@ -93,13 +97,13 @@ if (!$this->session->userdata['uRole']) {
                             <ul class="nav-treeview">
                                 <li class="nav-item">
                                     <a class="nav-link" href="<?php echo base_url('ManageUsers_c/index'); ?>">
-                                        <i class="nav-icon fas fa-user"></i>
+                                        &nbsp;&nbsp;<i class="nav-icon fas fa-user"></i>
                                         <p>Manage Users</p>
                                     </a>
                                 </li>
                                 <li class="nav-item has-treeview">
                                     <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa-briefcase"></i></i>
+                                        &nbsp;&nbsp;<i class="nav-icon fas fa-briefcase"></i></i>
                                         <p>Manage Job Types
                                             <i class="right fas fa-angle-left"></i>
                                         </p>
@@ -107,7 +111,7 @@ if (!$this->session->userdata['uRole']) {
                                     <ul class="nav-treeview">
                                         <li class="nav-item has-treeview">
                                             <a href="<?php echo base_url('ManageJobTypes_c') ?>" class="nav-link">
-                                                <i class="nav-icon fas fa-plus-circle"></i></i>
+                                                  &nbsp;&nbsp;&nbsp;&nbsp;<i class="nav-icon fas fa-plus-circle"></i></i>
                                                 <p>Add Job Types</p>
                                             </a>
                                         </li>
@@ -117,29 +121,36 @@ if (!$this->session->userdata['uRole']) {
                     <?php } ?>
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-briefcase"></i>
+                            <i class="nav-icon fa fa-users"></i>
                             <p>Manage Employees<i class="right fas fa-angle-left"></i></p>
                         </a>
                     <ul class="nav-treeview">
                         <li class="nav-item has-treeview">
                             <a href="<?php echo base_url('Employee_c/index') ?>" class="nav-link">
-                                <i class="nav-icon fas fa-plus-circle"></i></i>
+                                &nbsp;&nbsp;<i class="nav-icon fas fa-plus-circle"></i></i>
                                 <p>Add Employees</p>
                             </a>
                         </li>
                         <li class="nav-item has-treeview">
                             <a href="<?php echo base_url('Employee_c/viewEmployees') ?>" class="nav-link">
-                                <i class="nav-icon fas fa-eye"></i></i>
+                                &nbsp;&nbsp;<i class="nav-icon fas fa-eye"></i></i>
                                 <p>View Employees</p>
                             </a>
                         </li>
-
                     </ul>
                     </li>
 
-                    <li class="nav-item"><a style="background-color: #0c525d;margin-top: 25px!important;"
-                                            class="nav-link" href="<?php echo base_url('Login_c/logOut'); ?>"> <i
-                                    class="nav-icon fas fa-sign-out-alt"></i>
+                    <li class="nav-item has-treeview">
+                        <a href="<?php echo base_url('vehicle/index')?>" class="nav-link">
+                            <i class="nav-icon fa fa-truck"></i>
+                            <p>Manage Vehicles</p>
+                        </a>
+                    </li>
+
+
+
+                    <li class="nav-item"><a style="background-color: #0c525d;margin-top: 25px!important;" class="nav-link" href="<?php echo base_url('Login_c/logOut'); ?>">
+                            <i class="nav-icon fas fa-sign-out-alt"></i>
                             <p>Log Out</p></a></li>
                 </ul>
             </nav>

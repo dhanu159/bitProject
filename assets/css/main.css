@@ -21,3 +21,9 @@
 .mt-2{
 	color: red!important;
 }
+.deleteIcon{
+	color: rgb(211, 51, 51);
+}
+.updateIcon{
+	color:rgb(12, 82, 93);
+}

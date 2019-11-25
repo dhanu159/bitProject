@@ -80,8 +80,7 @@
                                             <div>
                                                 <label for="">Password Again</label>
                                                 <div class="col-lg-12">
-                                                    <input type="password" name="pwdAgain" class="form-control flat"
-                                                           id="pwdAgain">
+                                                    <input type="password" name="pwdAgain" class="form-control flat" id="pwdAgain">
                                                 </div>
                                             </div>
                                 </form>
