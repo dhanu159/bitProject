@@ -33,17 +33,17 @@ class Employee_c extends CI_Controller
     }
     public function saveEmployee_c()
     {
-        $empID = $this->input->post('empID');
+        $empID = $this->input->post('dation->set_rules(\'mName\', \'Middle Name\', \'alpha\');
+        $this->form_validation->set_rules(\'lName\', \'Last Name\', \'alpha\');
+        $this->form_validation->set_rules(\'nicNo\', \'NIC No\', \'required\');
+        $this->form_validation->set_rules(\'addL1\', \'Address Line 1\', \'required\');
+        $this->form_validation->set_rules(\'contactNumberM\', \'Contact No Mobile\', \'required|numeric|exact_length[10]\');
+        $this->form_validation->set_rulempID');
         $empImage['empImage'] = $_FILES['empImage']['name'];
         
         $this->load->library('form_validation');
         $this->form_validation->set_rules('fName', 'First Name', 'alpha');
-        $this->form_validation->set_rules('mName', 'Middle Name', 'alpha');
-        $this->form_validation->set_rules('lName', 'Last Name', 'alpha');
-        $this->form_validation->set_rules('nicNo', 'NIC No', 'required');
-        $this->form_validation->set_rules('addL1', 'Address Line 1', 'required');
-        $this->form_validation->set_rules('contactNumberM', 'Contact No Mobile', 'required|numeric|exact_length[10]');
-        $this->form_validation->set_rules('contactNumberH', 'Contact No Home', 'numeric|exact_length[10]');
+        $this->form_valies('contactNumberH', 'Contact No Home', 'numeric|exact_length[10]');
         $this->form_validation->set_rules('joinDate', 'Join Date', 'required');
         $this->form_validation->set_rules('description', 'Description', 'alpha_numeric_spaces');
 

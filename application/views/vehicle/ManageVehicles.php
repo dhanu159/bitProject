@@ -120,11 +120,21 @@
                             }).then((result) => {
                                 if (result.value) {
                                     var id = $(this).attr('data');
-//                                    var vNo = $(this).find(".varVehicleNo").html();
-//                                    var vNo = this.get
                                     var currentRow = $(this).closest("tr");
-                                    var vNo = currentRow.find(".vNo").html();
-                                    alert(vNo);
+
+                                    var driverName = currentRow.find(".driverName").html();
+//                                    alert(vNo+' '+fCapacity+' '+description+' '+driverName);
+
+                                    $('#vNo').val(currentRow.find(".vNo").html());
+                                    $('#fCapacity').val(currentRow.find(".fCapacity").html());
+                                    $('#description').val(currentRow.find(".description").html());
+                                    loadDriverNameAndId(); //load drive name and id
+
+//                                    $('#AssignedDriver').val(currentRow.find(".driverName").html());
+
+
+
+
 
                                     $('#addVehicle').modal('show');
                             $('#addVehicle').find('.modal-title').text('Edit Vehicle Details');
@@ -241,28 +251,31 @@
 
                         $('#viewAddVehicleModel').click(function () {
                             $("#vehicleForm").attr('action', '<?php echo base_url();?>index.php/Vehicle/addVehicle');
+                            loadDriverNameAndId();
+                        });
+                        function loadDriverNameAndId (){
                             $.ajax({
                                 type:'ajax',
                                 url:'<?php echo base_url();?>index.php/vehicle/loadUserNameOfDriver',
                                 async:false,
                                 dataType:'json',
                                 success: function(data){
-                                   $('#addVehicle').modal('show');
-                                   var html = '';
-                                   var i;
-                                   for (i = 0; i < data.length; i++) {
+                                    $('#addVehicle').modal('show');
+                                    var html = '';
+                                    var i;
+                                    for (i = 0; i < data.length; i++) {
 
-                                       var fullname = data[i].varEmpFname+" "+data[i].varEmpMName+" "+data[i].varEmpLname;
-                                       html += '<option value=' + data[i].intEmpID + ' >' + fullname + '</option>';
-                                   }
-                                   $('#AssignedDriver').html(html);
-                                   $('#driverID').val($('#AssignedDriver option:selected').val());
-                               },
-                               error: function () {
-                                   Swal.fire('Failed to load driver names');
-                               }
+                                        var fullname = data[i].varEmpFname+" "+data[i].varEmpMName+" "+data[i].varEmpLname;
+                                        html += '<option value=' + data[i].intEmpID + ' >' + fullname + '</option>';
+                                    }
+                                    $('#AssignedDriver').html(html);
+                                    $('#driverID').val($('#AssignedDriver option:selected').val());
+                                },
+                                error: function () {
+                                    Swal.fire('Failed to load driver names');
+                                }
                             });
-                        });
+                        }
                     $('#VehicleDataTable').on('click', '.item-delete', function() {
                         var varVehicleId = $(this).attr('data');
                         Swal.fire({
