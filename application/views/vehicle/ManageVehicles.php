@@ -120,15 +120,20 @@
 
                                     $('#vid').val($(this).attr('data'));
                                     $('#vNo').val(currentRow.find(".vNo").html());
-                                    $('#fCapacity').val(currentRow.find(".fCapacity").html());
+
+//                                    $('#fCapacity').val(currentRow.find(".fCapacity").html());
+                                    var fCapacity  = currentRow.find(".fCapacity").html();
+                                    fCapacity = fCapacity.replace("L"," ");
+                                    $('#fCapacity').val(fCapacity);
+
                                     $('#description').val(currentRow.find(".description").html());
 
                                     loadDriverNameAndId(); //load drive name and id
 
                                     $('#AssignedDriver :selected').text(currentRow.find(".driverName").html());
                                     $('#addVehicle').modal('show');
-                            $('#addVehicle').find('.modal-title').text('Edit Vehicle Details');
-                            $("#vehicleForm").attr('action', '<?php echo base_url();?>index.php/Vehicle/updateVehicle');
+                                    $('#addVehicle').find('.modal-title').text('Edit Vehicle Details');
+                                    $("#vehicleForm").attr('action', '<?php echo base_url();?>index.php/Vehicle/updateVehicle');
                                 }
                             })
 //                            alert(id);
@@ -160,7 +165,7 @@
 
                             var numbers = /^[0-9.]+$/;
 
-                            console.log(vNo+' '+fCapacity+' '+ driverID+' '+description);
+//                            console.log(vNo+' '+fCapacity+' '+ driverID+' '+description);
                             var error ;
 
                             if (vNo == '') {
@@ -193,6 +198,7 @@
                             }
                             else {
                                 var vid = $('#vid').val();
+                                alert(url);
                                 if ($('#btnSave').val() == 'update') {
                                     $.ajax({
                                         type: 'ajax',
