@@ -57,6 +57,7 @@
                             <div class="modal-body">
                                 <form action="#" class="form sidebar-form" id="vehicleForm">
                                     <div class="form-group">
+                                        <input type="hidden" id="vid">
                                         <div>
                                             <label>Vehicle No</label>
                                             <div class="col-lg-12">
@@ -92,7 +93,7 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary btn-sm btn-flat" data-dismiss="modal">Close
                                 </button>
-                                <button type="button" class="btn btn-primary btn-sm btn-flat" id="btnSave">Save</button>
+                                <button type="button" class="btn btn-primary btn-sm btn-flat" id="btnSave" value="save">Save</button>
                             </div>
                         </div>
                     </div>
@@ -101,17 +102,12 @@
                     $(function () {
                         showAllVehicle();
                         $('[data-toggle="tooltip"]').tooltip();
-//                        function test(){
-//                            alert('test');
-//                        }
-
 
                         // save and update button is same.modela change its action according to add or update button click
                         // Select User to Update
-                        $('#showData').on('click', '.item-edit', function () {
+                        $('#showData').on('click', '.item-update', function () {
                             Swal.fire({
                                 title: 'Are you sure?',
-                                text: "You won't be able to revert this!",
                                 icon: 'warning',
                                 showCancelButton: true,
                                 confirmButtonColor: '#3085d6',
@@ -119,26 +115,20 @@
                                 confirmButtonText: 'Yes, update!'
                             }).then((result) => {
                                 if (result.value) {
-                                    var id = $(this).attr('data');
+//                                    var id = $(this).attr('data');
                                     var currentRow = $(this).closest("tr");
 
-                                    var driverName = currentRow.find(".driverName").html();
-//                                    alert(vNo+' '+fCapacity+' '+description+' '+driverName);
-
+                                    $('#vid').val($(this).attr('data'));
                                     $('#vNo').val(currentRow.find(".vNo").html());
                                     $('#fCapacity').val(currentRow.find(".fCapacity").html());
                                     $('#description').val(currentRow.find(".description").html());
+
                                     loadDriverNameAndId(); //load drive name and id
 
-//                                    $('#AssignedDriver').val(currentRow.find(".driverName").html());
-
-
-
-
-
+                                    $('#AssignedDriver :selected').text(currentRow.find(".driverName").html());
                                     $('#addVehicle').modal('show');
                             $('#addVehicle').find('.modal-title').text('Edit Vehicle Details');
-                            $("#vehicleForm").attr('action', '<?php echo base_url();?>index.php/ManageUsers_c/updateUser');
+                            $("#vehicleForm").attr('action', '<?php echo base_url();?>index.php/Vehicle/updateVehicle');
                                 }
                             })
 //                            alert(id);
@@ -202,36 +192,83 @@
                                 })
                             }
                             else {
-                                $.ajax({
+                                var vid = $('#vid').val();
+                                if ($('#btnSave').val() == 'update') {
+                                    $.ajax({
+                                        type: 'ajax',
+                                        method: 'post',
+                                        url: url,
+                                        data: {
+                                            'vNo': vNo,
+                                            'fCapacity': fCapacity,
+                                            'driverID': driverID,
+                                            'description': description,
+                                            'vid' : vid
+                                        },
+                                        async: false,
+                                        dataType: 'json',
+                                        success: function (response) {
+                                            if (response.status == true) {
+                                                Swal.fire({
+                                                    icon: 'success',
+                                                    title: 'Success',
+                                                    text: response.msg,
+                                                })
+                                            }
+                                            else {
+                                                Swal.fire({
+                                                    icon: 'error',
+                                                    title: 'Oops...',
+//                                                    text: response.msg,
+                                                    text: 'update err',
+                                                })
+                                            }
+                                            // $('#addUser').reset();
+                                            // $(this).removeData$('#addUser');
+                                            showAllVehicle();
+                                        },
+                                        error: function () {
+                                            Swal.fire({
+                                                icon: 'error',
+                                                title: 'Oops...',
+                                                text: 'Internal Server Error!',
+                                            })
+                                        }
+
+                                    });
+                                }
+                                else{
+                                    $.ajax({
                                     type: 'ajax',
                                     method: 'post',
                                     url: url,
                                     data: {
                                         'vNo': vNo,
-                                        'fCapacity':fCapacity,
+                                        'fCapacity': fCapacity,
                                         'driverID': driverID,
                                         'description': description
                                     },
                                     async: false,
                                     dataType: 'json',
                                     success: function (response) {
-                                        if(response.status ==true) {
+                                        if (response.status == true) {
                                             Swal.fire({
                                                 icon: 'success',
                                                 title: 'Success',
                                                 text: response.msg,
                                             })
                                         }
-                                        else{
+                                        else {
                                             Swal.fire({
                                                 icon: 'error',
                                                 title: 'Oops...',
-                                                text: response.msg,
+//                                                text: response.msg,
+                                                text: 'errr save',
                                             })
                                         }
                                         // $('#addUser').reset();
                                         // $(this).removeData$('#addUser');
-                                         showAllVehicle();
+                                        showAllVehicle();
                                     },
                                     error: function () {
                                         Swal.fire({
@@ -243,6 +280,7 @@
 
                                 });
                             }
+                            }
                         });
 
                         $('#AssignedDriver').change(function () {
@@ -251,6 +289,7 @@
 
                         $('#viewAddVehicleModel').click(function () {
                             $("#vehicleForm").attr('action', '<?php echo base_url();?>index.php/Vehicle/addVehicle');
+                            $('#btnSave').val('save');
                             loadDriverNameAndId();
                         });
                         function loadDriverNameAndId (){
@@ -335,7 +374,7 @@
                                                 '<td class="description">' + data[i].varDescription + '</td>' +
                                                 '<td class="driverName">' + driverName + '</td>' +
                                                 <?php if ($this->session->userdata['uRole']=='Admin'){ ?>
-                                                '<td><a href="javascript:;" data-toggle="tooltip" title="Update Record" class="item-edit" data="' + data[i].varVehicleId +'"><i class="fas fa-user-edit updateIcon"></i></a>' +
+                                                '<td><a href="javascript:;" data-toggle="tooltip" title="Update Record" class="item-update" data="' + data[i].varVehicleId +'"><i class="fas fa-user-edit updateIcon"></i></a>' +
                                                 '&nbsp;&nbsp;&nbsp;&nbsp;' +
                                                 '<a href="javascript:;" data-toggle="tooltip" title="Delete Record" class="item-delete" data="' + data[i].varVehicleId +'"><i class="fas fa-trash-alt deleteIcon"></i></a></td>' +
                                                 <?php }?>

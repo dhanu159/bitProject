@@ -53,4 +53,21 @@ class vehicle_model extends CI_Model {
             return false;
         }
     }
+    public function updateVehicleDetails(){
+        $vid = $this->input->post('vid');
+        $data = array(
+            'varVehicleNo' => $this->input->post('vNo'),
+            'intFuelCapacity' => $this->input->post('fCapacity'),
+            'varDescription' => $this->input->post('description'),
+            'employee_intEmpID' => $this->input->post('driverID')
+        );
+        $this->db->where('varVehicleId', $vid);
+        $this->db->update('vehicle', $data);
+        if ($this->db->affected_rows()>0) {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }

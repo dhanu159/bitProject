@@ -63,6 +63,21 @@ class vehicle extends CI_Controller{
         }
         echo json_encode($data);
     }
+    public function updateVehicle(){
+        $data = array(
+            'msg'=>'',
+            'status'=>false
+        );
+        $result = $this->v->updateVehicleDetails();
+        if ($result){
+            $data['msg'] = 'Record updated successfully!';
+            $data['status']=true;
+        }
+        else{
+            $data['msg'] = 'Failed to update vehicle details!';
+        }
+        echo json_encode($data);
+    }
 
 }
 ?>
