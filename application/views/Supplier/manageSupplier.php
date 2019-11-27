@@ -27,6 +27,25 @@
             </div>
             <div class="card-body">
                 <button class="btn btn-success btn-sm btn-flat" data-toggle="modal" id="viewAddVendorModel" style="margin-bottom: 20px;">Add</button>
+                <div>
+                    <table class="table display responsive nowrap" id="suplierDataTable">
+                        <thead>
+                        <tr>
+                            <th>Suppplier Name</th>
+                            <th>Address</th>
+                            <th>Contact No</th>
+                            <th>Email</th>
+                            <th>Description</th>
+                            <?php if ($this->session->userdata['uRole']=='Admin'){ ?>
+                                <th>Action</th>
+                            <?php }?>
+                        </tr>
+                        </thead>
+                        <tbody id="showData">
+
+                        </tbody>
+                    </table>
+                </div>
 
                 <div class="modal fade" id="addSupplier" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <!--  addUser Modal -->
@@ -101,6 +120,7 @@
 </div><!-- End content-wrapper -->
 <script>
     $(function () {
+        showAllSuppliers();
         $('#viewAddVendorModel').click(function () {
             $("#supplierForm").attr('action', '<?php echo base_url();?>index.php/Supplier/addSupplier');
             $('#btnSave').val('save');
@@ -111,7 +131,7 @@
         });
 
         $('#btnSave').click(function () {
-            var url = $('#vehicleForm').attr('action');
+            var url = $('#supplierForm').attr('action');
             var sName = $('#sName').val();
             var addLine1 = $('#addLine1').val().trim();
             var addLine2 = $('#addLine2').val();
@@ -119,10 +139,7 @@
             var contactNo = $('#contactNo').val();
             var email = $('#email').val();
             var description = $('#description').val();
-
-            alert(url+' '+sName+' '+addLine1+' '+addLine2+' '+addLine3+' '+contactNo+' '+email+' '+description);
-
-            var numbers = /^[0-9.]+$/;
+            var sid = $('#sid').val();
 
             if (sName == '') {
                 Swal.fire({
@@ -153,9 +170,6 @@
                 })
             }
             else {
-//                var sid = $('#sid').val();
-//                alert(sName+' '+addLine1+' '+addLine2+' '+addLine3+' '+contactNo+' '+email+' '+description);
-
                 $.ajax({
                     type: 'ajax',
                     method: 'post',
@@ -167,9 +181,8 @@
                         'addLine3': addLine3,
                         'contactNo': contactNo,
                         'email': email,
-                        'description': description
-
-//                        'sid':sid
+                        'description': description,
+                        'sid':sid
                     },
                     async: false,
                     dataType: 'json',
@@ -188,8 +201,8 @@
                                 text: response.msg,
                             })
                         }
-//                        showAllVehicle();
-//                        $('#addVehicle').modal('hide');
+                        showAllSuppliers()
+                        $('#addSupplier').modal('hide');
 
                     },
                     error: function () {
@@ -202,6 +215,141 @@
 
                 });
             }
+        });
+
+        function showAllSuppliers() {
+            $.ajax({
+                type: 'ajax',
+                url: '<?php echo base_url();?>index.php/Supplier/viewSupplierDetails',
+                async: false,
+                dataType: 'json',
+                success: function (data) {
+                    if(data!=''){
+                        var html = '';
+                        var i;
+                        for (i = 0; i < data.length; i++) {
+                            var Address = data[i].varAddLine1+" "+data[i].varAddLine2+" "+data[i].varAddLine3;
+                            html += '<tr>' +
+                                '<td class="vNo">' + data[i].varVName + '</td>' +
+                                '<td class="fCapacity">' + Address + '</td>' +
+                                '<td class="description">' + data[i].varContactNo + '</td>' +
+                                '<td class="description">' + data[i].varEmaiAdd + '</td>' +
+                                '<td class="driverName">' + data[i].varDescription  + '</td>' +
+                                <?php if ($this->session->userdata['uRole']=='Admin'){ ?>
+                                '<td><a href="javascript:;" data-toggle="tooltip" title="Update Record" class="item-update" data="' + data[i].intVendorID +'"><i class="fas fa-user-edit updateIcon"></i></a>' +
+                                '&nbsp;&nbsp;&nbsp;&nbsp;' +
+                                '<a href="javascript:;" data-toggle="tooltip" title="Delete Record" class="item-delete" data="' + data[i].intVendorID +'"><i class="fas fa-trash-alt deleteIcon"></i></a></td>' +
+                                <?php }?>
+                                '</tr>';
+                        }
+                        $('#showData').html(html);
+                        $('#suplierDataTable').DataTable();
+                    }
+                    else{
+                        Swal.fire('Failed to load vehicle details');
+                    }
+                },
+                error: function () {
+                    alert('Could not load data');
+                }
+
+            });
+        }
+
+        $('#suplierDataTable').on('click', '.item-delete', function() {
+            var varSupplierId = $(this).attr('data');
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!',
+                background:'#ffe3e3'
+            }).then((result) => {
+                if (result.value) {
+
+                    $.ajax({
+                        type: 'ajax',
+                        url: '<?php echo base_url(); ?>index.php/Supplier/deleteSupplierDetails',
+                        async: false,
+                        dataType: 'json',
+                        method: 'post',
+                        data: {
+                            'varSupplierId': varSupplierId
+                        },
+                        success: function(data) {
+                            Swal.fire(
+                                'Deleted!',
+                                data.message,
+                                'success'
+                            )
+                            showAllSuppliers();
+                        },
+                        error: function() {
+                            alert('Could not load data');
+                        }
+                    });
+                }
+            })
+        });
+        $('#showData').on('click', '.item-update', function () {
+            Swal.fire({
+                title: 'Are you sure?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, update!'
+            }).then((result) => {
+                if (result.value) {
+
+                    var sid = $(this).attr('data');
+                    $.ajax({
+                        type: 'ajax',
+                        method: 'post',
+                        url:  '<?php echo base_url(); ?>index.php/Supplier/SelectSupplerForUpdate',
+                        data: {
+                        'sid':sid
+                        },
+                        async: false,
+                        dataType: 'json',
+                        success: function (response) {
+//                            alert('ok');
+                            if (response!='') {
+                                $('#addSupplier').modal('show');
+                                $('#sName').val(response.varVName);
+                                $('#addLine1').val(response.varAddLine1);
+                                $('#addLine2').val(response.varAddLine2);
+                                $('#addLine3').val(response.varAddLine3);
+                                $('#contactNo').val(response.varContactNo);
+                                $('#email').val(response.varEmaiAdd);
+                                $('#description').val(response.varDescription);
+                            }
+                            else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: response.msg,
+                                })
+                            }
+                        },
+                        error: function () {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Internal Server Error!',
+                            })
+                        }
+                    });
+
+                    $('#viewAddVendorModel').find('.modal-title').text('Edit Supplier Details');
+                    $('#sid').val(sid);
+                    $("#supplierForm").attr('action', '<?php echo base_url();?>index.php/Supplier/updateSupplier');
+
+                }
+            })
         });
     });
 </script>

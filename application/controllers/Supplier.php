@@ -32,4 +32,54 @@ class Supplier extends CI_Controller{
             echo json_encode($data);
         }
     }
+    public function viewSupplierDetails(){
+        $result ='';
+        $result = $this->s->viewAllSupplierDetails();
+        if ($result){
+            echo json_encode($result);
+        }
+        else{
+            echo json_encode($result);
+        }
+    }
+    public function deleteSupplierDetails(){
+        $data = array(
+            'msg'=>'',
+            'status'=>false
+        );
+        $result = $this->s->deleteSupplierDetails();
+        if ($result){
+            $data['msg']='Record deleted successfully!';
+            $data['status']=true;
+        }
+        else{
+            $data['msg']='Record not deleted!';
+        }
+        echo json_encode($data);
+    }
+    public function SelectSupplerForUpdate(){
+        $result ='';
+        $result = $this->s->SelectSupplerForUpdate_M();
+        if ($result){
+            echo json_encode($result);
+        }
+        else{
+            echo json_encode($result);
+        }
+    }
+    public function updateSupplier(){
+        $data = array(
+            'msg'=>'',
+            'status'=>false
+        );
+        $result = $this->s->updateSupplierDetails();
+        if ($result){
+            $data['msg'] = 'Record updated successfully!';
+            $data['status']=true;
+        }
+        else{
+            $data['msg'] = 'Failed to update vehicle details!';
+        }
+        echo json_encode($data);
+    }
 }
