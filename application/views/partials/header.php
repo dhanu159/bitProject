@@ -147,7 +147,18 @@ if (!$this->session->userdata['uRole']) {
                         </a>
                     </li>
 
-
+                    <li class="nav-item has-treeview">
+                        <a href="<?php echo base_url('Inventory/index')?>" class="nav-link">
+                            <i class="nav-icon fab fa-opencart"></i>
+                            <p>Manage Inventory</p>
+                        </a>
+                    </li>
+                    <li class="nav-item has-treeview">
+                        <a href="<?php echo base_url('Supplier/index')?>" class="nav-link">
+                            <i class="nav-icon fas fa-truck-loading"></i>
+                            <p>Manage Vendors</p>
+                        </a>
+                    </li>
 
                     <li class="nav-item"><a style="background-color: #0c525d;margin-top: 25px!important;" class="nav-link" href="<?php echo base_url('Login_c/logOut'); ?>">
                             <i class="nav-icon fas fa-sign-out-alt"></i>

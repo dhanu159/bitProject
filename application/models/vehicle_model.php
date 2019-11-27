@@ -20,6 +20,7 @@ class vehicle_model extends CI_Model {
             'varVehicleNo' => $this->input->post('vNo'),
             'intFuelCapacity' => $this->input->post('fCapacity'),
             'varDescription' => $this->input->post('description'),
+            'varVehicleType' => $this->input->post('vehiType'),
             'employee_intEmpID' => $this->input->post('driverID')
     );
         $this->db->insert('vehicle',$data);
@@ -31,7 +32,7 @@ class vehicle_model extends CI_Model {
     }
     }
     public function viewAllVehicleDetails(){
-        $query = $this->db->query("select e.intEmpID,e.varEmpFname,e.varEmpMName, e.varEmpLname,v.varVehicleId,v.varVehicleNo,v.intFuelCapacity,v.varDescription from vehicle v INNER JOIN employee e ON v.employee_intEmpID = e.intEmpID WHERE varVehicleIsActive = '1'");
+        $query = $this->db->query("select e.intEmpID,e.varEmpFname,e.varEmpMName, e.varEmpLname,v.varVehicleId,v.varVehicleNo,v.intFuelCapacity,v.varDescription,v.varVehicleType from vehicle v INNER JOIN employee e ON v.employee_intEmpID = e.intEmpID WHERE varVehicleIsActive = '1'");
         if ($query->num_rows()>0){
             return $query->result();
         }
@@ -59,9 +60,10 @@ class vehicle_model extends CI_Model {
             'varVehicleNo' => $this->input->post('vNo'),
             'intFuelCapacity' => $this->input->post('fCapacity'),
             'varDescription' => $this->input->post('description'),
+            'varVehicleType' => $this->input->post('vehiType'),
             'employee_intEmpID' => $this->input->post('driverID')
         );
-        $this->db->where('varVehicleId', $vid);
+        $this->db->where('varVehicleId',$vid);
         $this->db->update('vehicle', $data);
         if ($this->db->affected_rows()>0) {
             return true;

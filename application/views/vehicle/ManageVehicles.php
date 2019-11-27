@@ -32,6 +32,7 @@
                             <th>Vehicle Number</th>
                             <th>Fuel Capacity</th>
                             <th>Description</th>
+                            <th>Vehicle Type</th>
                             <th>Driver Name</th>
                             <?php if ($this->session->userdata['uRole']=='Admin'){ ?>
                                 <th>Action</th>
@@ -43,8 +44,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="modal fade" id="addVehicle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                     aria-hidden="true">
+                <div class="modal fade" id="addVehicle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <!--  addUser Modal -->
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -68,6 +68,15 @@
                                             <label for="">Fuel Capacity(In leaters)</label>
                                             <div class="col-lg-12">
                                                 <input type="text" name="empId" class="form-control flat" id="fCapacity" placeholder="10">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label for="">Vehicle Type</label>
+                                            <div class="col-lg-12">
+                                                <select name="" id="vehiType" class="form-control flat">
+                                                    <option value="">Bike</option>
+                                                    <option value="">Lorry</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div>
@@ -136,24 +145,6 @@
                                     $("#vehicleForm").attr('action', '<?php echo base_url();?>index.php/Vehicle/updateVehicle');
                                 }
                             })
-//                            alert(id);
-//                            $.ajax({
-//                                type: 'ajax',
-//                                method: 'post',
-//                                url: '<?php //echo base_url();?>//index.php/ManageUsers_c/selectUserToUpdate',
-//                                data: {
-//                                    'id': id
-//                                },
-//                                async: false,
-//                                dataType: 'json',
-//                                success: function (data) {
-//                                    $('#uName option:selected').attr(data.intUid);
-//                                    $('#email').val(data.varEmail);
-//                                },
-//                                error: function () {
-//                                    alert('Failed to edit user');
-//                                }
-//                            });
                         });
 
                         $('#btnSave').click(function () {
@@ -162,11 +153,9 @@
                             var fCapacity = $('#fCapacity').val().trim();
                             var driverID = $('#driverID').val();
                             var description = $('#description').val();
+                            var vehiType = $('#vehiType option:selected').text();
 
                             var numbers = /^[0-9.]+$/;
-
-//                            console.log(vNo+' '+fCapacity+' '+ driverID+' '+description);
-                            var error ;
 
                             if (vNo == '') {
                                 Swal.fire({
@@ -196,54 +185,15 @@
                                     text: "Integers only fpr fuel capacity",
                                 })
                             }
+                            else if (vehiType == '') {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: "Vehicle Type is Required",
+                                })
+                            }
                             else {
                                 var vid = $('#vid').val();
-                                alert(url);
-                                if ($('#btnSave').val() == 'update') {
-                                    $.ajax({
-                                        type: 'ajax',
-                                        method: 'post',
-                                        url: url,
-                                        data: {
-                                            'vNo': vNo,
-                                            'fCapacity': fCapacity,
-                                            'driverID': driverID,
-                                            'description': description,
-                                            'vid' : vid
-                                        },
-                                        async: false,
-                                        dataType: 'json',
-                                        success: function (response) {
-                                            if (response.status == true) {
-                                                Swal.fire({
-                                                    icon: 'success',
-                                                    title: 'Success',
-                                                    text: response.msg,
-                                                })
-                                            }
-                                            else {
-                                                Swal.fire({
-                                                    icon: 'error',
-                                                    title: 'Oops...',
-//                                                    text: response.msg,
-                                                    text: 'update err',
-                                                })
-                                            }
-                                            // $('#addUser').reset();
-                                            // $(this).removeData$('#addUser');
-                                            showAllVehicle();
-                                        },
-                                        error: function () {
-                                            Swal.fire({
-                                                icon: 'error',
-                                                title: 'Oops...',
-                                                text: 'Internal Server Error!',
-                                            })
-                                        }
-
-                                    });
-                                }
-                                else{
                                     $.ajax({
                                     type: 'ajax',
                                     method: 'post',
@@ -252,7 +202,9 @@
                                         'vNo': vNo,
                                         'fCapacity': fCapacity,
                                         'driverID': driverID,
-                                        'description': description
+                                        'description': description,
+                                        'vehiType': vehiType,
+                                        'vid':vid
                                     },
                                     async: false,
                                     dataType: 'json',
@@ -268,13 +220,14 @@
                                             Swal.fire({
                                                 icon: 'error',
                                                 title: 'Oops...',
-//                                                text: response.msg,
-                                                text: 'errr save',
+                                                text: response.msg,
                                             })
                                         }
-                                        // $('#addUser').reset();
+//                                         $('#vehicleForm').reset();
                                         // $(this).removeData$('#addUser');
                                         showAllVehicle();
+                                        $('#addVehicle').modal('hide');
+
                                     },
                                     error: function () {
                                         Swal.fire({
@@ -285,7 +238,7 @@
                                     }
 
                                 });
-                            }
+//                            }
                             }
                         });
 
@@ -295,6 +248,7 @@
 
                         $('#viewAddVehicleModel').click(function () {
                             $("#vehicleForm").attr('action', '<?php echo base_url();?>index.php/Vehicle/addVehicle');
+                            $('#addVehicle').find('.modal-title').text('Add Vehicle Details');
                             $('#btnSave').val('save');
                             loadDriverNameAndId();
                         });
@@ -372,12 +326,14 @@
                                     if(data!=''){
                                         var html = '';
                                         var i;
+                                        console.log(data);
                                         for (i = 0; i < data.length; i++) {
                                             var driverName = data[i].varEmpFname+" "+data[i].varEmpMName+" "+data[i].varEmpLname;
                                             html += '<tr>' +
                                                 '<td class="vNo">' + data[i].varVehicleNo + '</td>' +
                                                 '<td class="fCapacity">' + data[i].intFuelCapacity+' L' + '</td>' +
                                                 '<td class="description">' + data[i].varDescription + '</td>' +
+                                                '<td class="description">' + data[i].varVehicleType + '</td>' +
                                                 '<td class="driverName">' + driverName + '</td>' +
                                                 <?php if ($this->session->userdata['uRole']=='Admin'){ ?>
                                                 '<td><a href="javascript:;" data-toggle="tooltip" title="Update Record" class="item-update" data="' + data[i].varVehicleId +'"><i class="fas fa-user-edit updateIcon"></i></a>' +

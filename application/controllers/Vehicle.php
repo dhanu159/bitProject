@@ -34,7 +34,7 @@ class vehicle extends CI_Controller{
             echo json_encode($data);
         }
         else{
-            $data['msg']='sucess fully saved';
+            $data['msg']='Record not saved';
             echo json_encode($data);
         }
     }

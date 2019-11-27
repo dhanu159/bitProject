@@ -43,7 +43,7 @@ class Employee_c extends CI_Controller
         
         $this->load->library('form_validation');
         $this->form_validation->set_rules('fName', 'First Name', 'alpha');
-        $this->form_valies('contactNumberH', 'Contact No Home', 'numeric|exact_length[10]');
+        $this->form_validation->set_rules('contactNumberH', 'Contact No Home', 'numeric|exact_length[10]');
         $this->form_validation->set_rules('joinDate', 'Join Date', 'required');
         $this->form_validation->set_rules('description', 'Description', 'alpha_numeric_spaces');
 
