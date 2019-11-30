@@ -156,7 +156,19 @@ if (!$this->session->userdata['uRole']) {
                     <li class="nav-item has-treeview">
                         <a href="<?php echo base_url('Supplier/index')?>" class="nav-link">
                             <i class="nav-icon fas fa-truck-loading"></i>
-                            <p>Manage Vendors</p>
+                            <p>Manage Suppliers</p>
+                        </a>
+                    </li>
+                    <li class="nav-item has-treeview">
+                        <a href="<?php echo base_url('Customer/index')?>" class="nav-link">
+                            <i class="nav-icon fas fa-crown"></i>
+                            <p>Manage Customers</p>
+                        </a>
+                    </li>
+                    <li class="nav-item has-treeview">
+                        <a href="<?php echo base_url('Product/index')?>" class="nav-link">
+                            <i class="nav-icon fab fa-product-hunt"></i>
+                            <p>Manage Products</p>
                         </a>
                     </li>
 

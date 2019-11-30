@@ -29,7 +29,7 @@
             <div class="card-body">
                 <!--Content-->
                 <table class="table display responsive nowrap" id="userDataTable">
-                    <thead style="font-size: 12px;">
+                    <thead class="jTableContent">
                         <tr>
                             <th>EMP ID</th>
                             <th>Name</th>

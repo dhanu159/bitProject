@@ -33,41 +33,41 @@ class Employee_c extends CI_Controller
     }
     public function saveEmployee_c()
     {
-        $empID = $this->input->post('dation->set_rules(\'mName\', \'Middle Name\', \'alpha\');
-        $this->form_validation->set_rules(\'lName\', \'Last Name\', \'alpha\');
-        $this->form_validation->set_rules(\'nicNo\', \'NIC No\', \'required\');
-        $this->form_validation->set_rules(\'addL1\', \'Address Line 1\', \'required\');
-        $this->form_validation->set_rules(\'contactNumberM\', \'Contact No Mobile\', \'required|numeric|exact_length[10]\');
-        $this->form_validation->set_rulempID');
+        $empID = $this->input->post('empID');
         $empImage['empImage'] = $_FILES['empImage']['name'];
-        
+
         $this->load->library('form_validation');
         $this->form_validation->set_rules('fName', 'First Name', 'alpha');
+        $this->form_validation->set_rules('mName', 'Middle Name', 'alpha');
+        $this->form_validation->set_rules('lName', 'Last Name', 'alpha');
+        $this->form_validation->set_rules('nicNo', 'NIC No', 'required');
+        $this->form_validation->set_rules('addL1', 'Address Line 1', 'required');
+        $this->form_validation->set_rules('contactNumberM', 'Contact No Mobile', 'required|numeric|exact_length[10]');
         $this->form_validation->set_rules('contactNumberH', 'Contact No Home', 'numeric|exact_length[10]');
         $this->form_validation->set_rules('joinDate', 'Join Date', 'required');
         $this->form_validation->set_rules('description', 'Description', 'alpha_numeric_spaces');
 
         //file upload start
         $config['upload_path']          = './uploads/';
-        $config['allowed_types']        = 'gif|jpg|png|jpeg';
+        $config['allowed_types']        = 'jpg|png|jpeg';
         $config['max_size']             = 12224;
         $config['max_width']            = 2048;
         $config['max_height']           = 2048;
-        
+
         if ($this->form_validation->run() == true) {
             if ($empID && !$empImage['empImage']) {
-                    // echo "no image".$empImage['empImage'];
-                    $result =  $this->E->updateEmpM(true);
-                    if ($result) {
-                        $this->session->set_flashdata('flashSuccess', 'Employee updated successfully !');
-                    }
-                    else{
-                        $this->session->set_flashdata('flashError', 'Employee upload failed !');  
-                    }
+                // echo "no image".$empImage['empImage'];
+                $result =  $this->E->updateEmpM(true);
+                if ($result) {
+                    $this->session->set_flashdata('flashSuccess', 'Employee updated successfully !');
+                }
+                else{
+                    $this->session->set_flashdata('flashError', 'Employee upload failed !');
+                }
             }
-            else{ 
+            else{
                 $config['file_name'] = $this->input->post('nicNo') . '_' . $_FILES['empImage']['name']; //this name also created in employee model to generate name
-                $this->load->library('upload', $config);   
+                $this->load->library('upload', $config);
                 if($this->upload->do_upload('empImage')){
                     if ($empID) {
                         $result = $this->E->updateEmpM(false);
@@ -75,7 +75,7 @@ class Employee_c extends CI_Controller
                             $this->session->set_flashdata('flashSuccess', 'Employee updated successfully !');
                         }
                         else{
-                            $this->session->set_flashdata('flashError', 'Employee update failed !');  
+                            $this->session->set_flashdata('flashError', 'Employee update failed !');
                         }
                     }
                     else{
@@ -84,7 +84,7 @@ class Employee_c extends CI_Controller
                             $this->session->set_flashdata('flashSuccess', 'Employee added successfully !');
                         }
                         else{
-                            $this->session->set_flashdata('flashError', 'Employee is already added !');  
+                            $this->session->set_flashdata('flashError', 'Employee is already added !');
                         }
                     }
                 }
@@ -144,48 +144,48 @@ class Employee_c extends CI_Controller
 // $this->load->view('Employee_v');
 // $this->load->view('partials/footer');
         // }
-}
-public function viewEmployees()
-{
-    $this->load->view('partials/header');
-    $this->load->view('Employee/viewEmployees');
-    $this->load->view('partials/footer');
-}
-public function getAllEmployees()
-{
-    $result =  $this->E->getAllEmpolyeesFromM();
-    echo json_encode($result);
-}
-public function deleteEmployee()
-{
-    $msg['message'] = 'Failed to delete user';
-
-    $result = $this->E->deleteEmployeeM();
-
-    if ($result) {
-        $msg['message'] = 'User deleted successfully!';
     }
-    echo json_encode($msg);
-}
-public function updateEmployee()
-{
-    if (isset($this->session->userdata['uName']) && $this->session->userdata['uRole']=='Admin') {
-        $empID = $this->input->get('empID');
-        $result = $this->E->selectUserForUpdate($empID);
+    public function viewEmployees()
+    {
+        $this->load->view('partials/header');
+        $this->load->view('Employee/viewEmployees');
+        $this->load->view('partials/footer');
+    }
+    public function getAllEmployees()
+    {
+        $result =  $this->E->getAllEmpolyeesFromM();
+        echo json_encode($result);
+    }
+    public function deleteEmployee()
+    {
+        $msg['message'] = 'Failed to delete user';
 
+        $result = $this->E->deleteEmployeeM();
 
         if ($result) {
-            $this->load->view('partials/header');
-            $this->load->view('Employee_v', $result);
-            $this->load->view('partials/footer');
-        } else {
-            $this->load->view('partials/header');
-            $this->load->view('Employee/viewEmployees');
-            $this->load->view('partials/footer');
+            $msg['message'] = 'User deleted successfully!';
+        }
+        echo json_encode($msg);
+    }
+    public function updateEmployee()
+    {
+        if (isset($this->session->userdata['uName']) && $this->session->userdata['uRole']=='Admin') {
+            $empID = $this->input->get('empID');
+            $result = $this->E->selectUserForUpdate($empID);
+
+
+            if ($result) {
+                $this->load->view('partials/header');
+                $this->load->view('Employee_v', $result);
+                $this->load->view('partials/footer');
+            } else {
+                $this->load->view('partials/header');
+                $this->load->view('Employee/viewEmployees');
+                $this->load->view('partials/footer');
+            }
+        }
+        else{
+            header('Location:' .base_url('index.php/Login_c/logOut'));
         }
     }
-    else{
-        header('Location:' .base_url('index.php/Login_c/logOut'));
-    }
-}
 }

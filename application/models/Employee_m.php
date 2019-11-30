@@ -96,14 +96,14 @@ class Employee_m extends CI_Model
             'jobCateogory_intJobCategoryID' => $this->input->post('designation')
         );
         if ($updateWithoutImage) {
-            echo 'without image';
+            // echo 'without image';
             unset($data['image']);
-            print_r($data);        
+            // print_r($data);
         }
-        else{
-            echo 'with image';
-            print_r($data);
-        }
+        // else{
+        // echo 'with image';
+        // print_r($data);
+        // }
         $this->db->where('intEmpID', $empID);
         $this->db->update($this->empTb, $data);
         if ($this->db->affected_rows()>0) {
@@ -115,6 +115,6 @@ class Employee_m extends CI_Model
 
         // echo "</br>";
         // unset($data['image']);
-        // print_r($data); 
+        // print_r($data);
     }
 }

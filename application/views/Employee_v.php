@@ -51,16 +51,16 @@
                 <?php echo validation_errors('<div class="alert alert-danger ErrMsg">', '</div>') ?>
 
                 <?php  echo form_open_multipart('Employee_c/saveEmployee_c');?>
-        
+
                 <div class="row form-group" style="padding: 10px;">
 
                     <?php if (isset($intEmpID)) { ?>
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                        <label for="">EMP ID :</label>
-                        <input class="form-control flat" type="text" name="empID" value="<?php echo $intEmpID;?>" readonly required>
-                    </div>
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                            <label for="">EMP ID :</label>
+                            <input class="form-control flat" type="text" name="empID" value="<?php echo $intEmpID;?>" readonly required>
+                        </div>
                     <?php }?>
-                    
+
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                         <label for="">First Name :</label>
                         <input class="form-control flat" type="text" name="fName" value="<?php if (isset($varEmpFname)) { echo $varEmpFname;}?>" required>
@@ -139,18 +139,18 @@
                 <?php echo form_close(); ?>
                 <?php if (isset($jobCateogory_intJobCategoryID)) {?>
                     <input type="text" id="updateEmpJobDes" value="<?php echo $jobCateogory_intJobCategoryID;?>" hidden>
-                <?php } ?>   
+                <?php } ?>
             </div><!-- End card-body -->
         </div><!-- End card -->
     </section><!-- End content -->
     <script>
         $(function() {
-            
+
             // $('#textsetjob').click(function(){
-                function changeDesignationAccoedingToUpdateSelection(){
+            function changeDesignationAccoedingToUpdateSelection(){
                 var updateEmpJobDes =  $('#updateEmpJobDes').val();
                 $('#designation').val(updateEmpJobDes);
-                }
+            }
             // });
             //start upload selected image form employee
             function readURL(input) {
@@ -189,7 +189,7 @@
                         if($('#updateEmpJobDes').val()!=null){
                             changeDesignationAccoedingToUpdateSelection();
                         }
-                        
+
                     },
                     error: function() {
                         alert('internal error could not load job categories designations!')

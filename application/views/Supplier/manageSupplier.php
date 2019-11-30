@@ -246,7 +246,7 @@
                         $('#suplierDataTable').DataTable();
                     }
                     else{
-                        Swal.fire('Failed to load vehicle details');
+                        Swal.fire('Failed to load Supplier details');
                     }
                 },
                 error: function () {
