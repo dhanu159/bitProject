@@ -12,7 +12,7 @@ class ManageJobTypes_c extends CI_Controller {
 	{
 
 		$this->load->view('partials/header');
-		$this->load->view('ManageJobTypes_v');
+		$this->load->view('admin/ManageJobTypes_v');
 		$this->load->view('partials/footer');
 	}
 	public function saveJobTypes(){

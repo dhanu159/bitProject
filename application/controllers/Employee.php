@@ -20,7 +20,7 @@ class Employee_c extends CI_Controller
     public function index()
     {
         $this->load->view('partials/header');
-        $this->load->view('Employee_v');
+        $this->load->view('Employee/Employee_v');
         $this->load->view('partials/footer');
     }
     public function LoadJobCategoriesAndDesignations()
@@ -33,6 +33,8 @@ class Employee_c extends CI_Controller
     }
     public function saveEmployee_c()
     {
+//        if $status == true navigate to employee view page else navigate to employee registarion page
+        $status = false;
         $empID = $this->input->post('empID');
         $empImage['empImage'] = $_FILES['empImage']['name'];
 
@@ -51,8 +53,8 @@ class Employee_c extends CI_Controller
         $config['upload_path']          = './uploads/';
         $config['allowed_types']        = 'jpg|png|jpeg';
         $config['max_size']             = 12224;
-        $config['max_width']            = 2048;
-        $config['max_height']           = 2048;
+        $config['max_width']            = 4096;
+        $config['max_height']           = 4096;
 
         if ($this->form_validation->run() == true) {
             if ($empID && !$empImage['empImage']) {
@@ -60,6 +62,7 @@ class Employee_c extends CI_Controller
                 $result =  $this->E->updateEmpM(true);
                 if ($result) {
                     $this->session->set_flashdata('flashSuccess', 'Employee updated successfully !');
+                    $status = true;
                 }
                 else{
                     $this->session->set_flashdata('flashError', 'Employee upload failed !');
@@ -73,6 +76,7 @@ class Employee_c extends CI_Controller
                         $result = $this->E->updateEmpM(false);
                         if ($result) {
                             $this->session->set_flashdata('flashSuccess', 'Employee updated successfully !');
+                            $status = true;
                         }
                         else{
                             $this->session->set_flashdata('flashError', 'Employee update failed !');
@@ -82,6 +86,7 @@ class Employee_c extends CI_Controller
                         $result = $this->E->saveEmployee_m();
                         if($result){
                             $this->session->set_flashdata('flashSuccess', 'Employee added successfully !');
+                            $status = true;
                         }
                         else{
                             $this->session->set_flashdata('flashError', 'Employee is already added !');
@@ -95,9 +100,16 @@ class Employee_c extends CI_Controller
                 }
             }
         }
-        $this->load->view('partials/header');
-        $this->load->view('Employee_v');
-        $this->load->view('partials/footer');
+        if ($status){
+            $this->load->view('partials/header');
+            $this->load->view('Employee/viewEmployees');
+            $this->load->view('partials/footer');
+        }
+        else{
+            $this->load->view('partials/header');
+            $this->load->view('Employee/Employee_v');
+            $this->load->view('partials/footer');
+        }
 
 
 
@@ -176,7 +188,7 @@ class Employee_c extends CI_Controller
 
             if ($result) {
                 $this->load->view('partials/header');
-                $this->load->view('Employee_v', $result);
+                $this->load->view('Employee/Employee_v', $result);
                 $this->load->view('partials/footer');
             } else {
                 $this->load->view('partials/header');

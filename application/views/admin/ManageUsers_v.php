@@ -3,10 +3,7 @@
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>Main Menu</h1>
-                </div>
-                <div class="col-sm-6">
+                <div class="col-sm-12">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="<?php echo base_url('Home_c')?>">Home</a></li>
                         <li class="breadcrumb-item active">Manage Users</li>
@@ -69,7 +66,13 @@
                                         <div>
                                             <label for="">Email</label>
                                             <div class="col-lg-12">
-                                                <input type="text" name="email" class="form-control flat" id="email">
+                                                <input type="email" name="email" class="form-control flat" id="email">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label for="">User Type</label>
+                                            <div class="col-lg-12">
+                                                <input type="text" name="uType" class="form-control flat" id="uType">
                                             </div>
                                         </div>
                                         <div>
@@ -96,7 +99,7 @@
                 <script>
                     $(function () {
                         showAllUsers();
-
+                        $('[data-toggle="tooltip"]').tooltip();
                         $('#viewAddUserModel').click(function () {
                             // $('#addUser').modal('show');
                             //$("#userForm").attr('action', '<?php //echo base_url();?>//index.php/ManageUsers_c/addUser');

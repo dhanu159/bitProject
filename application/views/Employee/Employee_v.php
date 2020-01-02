@@ -146,12 +146,10 @@
     <script>
         $(function() {
 
-            // $('#textsetjob').click(function(){
             function changeDesignationAccoedingToUpdateSelection(){
                 var updateEmpJobDes =  $('#updateEmpJobDes').val();
                 $('#designation').val(updateEmpJobDes);
             }
-            // });
             //start upload selected image form employee
             function readURL(input) {
                 if (input.files && input.files[0]) {

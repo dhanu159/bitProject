@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class ManageUsers_c extends CI_Controller
+class Admin extends CI_Controller
 {
     function __construct()
     {
@@ -42,6 +42,11 @@ class ManageUsers_c extends CI_Controller
             $msg['success'] = true;
         }
         echo json_encode($msg);
+    }
+    public function viewDashBoard(){
+        $this->load->view('partials/header');
+        $this->load->view('admin/dashboard');
+        $this->load->view('partials/footer');
     }
 }
 
